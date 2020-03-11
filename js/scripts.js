@@ -1,50 +1,37 @@
-// function tellStory() {
-    // nounArray = querySelector('#noun')
-    // lowercase
-    // string split()
-    // repeat for adjectives and verbs
+let message
 
+const pizza = {
+    crust: "thin",
+    size: "small",
+    topping: "pepperoni",
+    buildPizza: function () {
+        message = `Baking a ${pizza.size} pizza on a ${pizza.crust} crust with ${pizza.topping} and cheese just for you!`
+        document.querySelector('#feedback').textContent = message
+    },
+    shoppingList: () => {
+        let flour = 1
+        if (pizza.crust === 'thick') flour *= 2
+        if (pizza.size === 'large') flour *= 2
+        // do same for large property
+        message = `You will need to purchase ${flour} cups of flour and 1 lb of ${pizza.topping}.`
+        document.querySelector('#feedback').textContent = message
+    }
+}
 
-    
+document.querySelector('#thin').addEventListener('click', () => pizza.crust = 'thin')
 
-    // tellStory()
+document.querySelector('#thick').addEventListener('click', () => pizza.crust = 'thick')
 
-    // get a reference to the querySelector('#story') = myStory
-// }
+document.querySelector('#pepperoni').addEventListener('click', () => pizza.topping = 'pepperoni')
 
-    // const nouns = document.querySelector('#noun')
-    // const nounArray = nouns.split(' ')
-    // console.log(nounArray)
+document.querySelector('#sausage').addEventListener('click', () => pizza.topping = 'sausage')
 
-function tellStory() {
+document.querySelector('#small').addEventListener('click', () => pizza.size = 'small')
 
-const nounArray = document.querySelector('#noun')
-const nouns = nounArray.value.toLowerCase()
-noun = nouns.replace(/\s+/," ").split(/\s+|\n/)
+document.querySelector('#large').addEventListener('click', () => pizza.size = 'large')
 
+// same for toppings and size
 
-
-const adjectiveArray = document.querySelector('#adjective')
-const adjectives = adjectiveArray.value.toLowerCase()
-adjective = adjectives.replace(/\s+/," ").split(/\s+|\n/)
-
-
-
-const verbArray = document.querySelector('#verb')
-const verbs = verbArray.value.toLowerCase()
-verb = verbs.replace(/\s+/," ").split(/\s+|\n/)
-
-
-
-const myStory = `Once upon a time there were four ${noun[0]} brothers named Bingo, Bango, Bongo, and Bengo. The brothers had two ${noun[1]}s each. Not only did they have those, but they had ${noun[2]}s too. The brothers were known for being very ${adjective[0]}. They were also known for loving to ${verb[0]}. One day the brothers found a ${noun[3]}, a ${noun[4]}, and a few ${noun[5]}s. This made the brothers very ${adjective[1]} and ${adjective[2]}. They decided to go to ${noun[6]} to ${verb[1]} and ${verb[2]}. THE END.`
-
-
-console.log(myStory)
-
-
-
-story = document.querySelector('#story')
-story.textContent = myStory
-
-
-}    
+document.querySelector('#build').addEventListener('click', pizza.buildPizza)
+// hook up shoppingList method call
+document.querySelector('#shopping').addEventListener('click', pizza.shoppingList)
